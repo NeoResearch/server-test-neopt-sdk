@@ -1,0 +1,3 @@
+[submodule "thirdparty/neopt-sdk.js"]
+	path = thirdparty/neopt-sdk.js
+	url = https://github.com/NeoResearch/neopt-sdk.js.git

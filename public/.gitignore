@@ -1,0 +1,4 @@
+neopt-lib-cpp/
+*.wasm
+*.html
+*.js
