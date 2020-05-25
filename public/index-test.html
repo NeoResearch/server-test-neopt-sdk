@@ -8,6 +8,25 @@
   <!-- <script src="./build/neopt-lib-cpp/neopt-lib.js"></script> -->
   <!-- <script src="src/neopt-sdk/index.js"></script> -->
   <script src="https://unpkg.com/csbiginteger/dist/csbiginteger"></script>
+  <!-- <script src="./neopt-lib-cpp/neopt-lib.js"></script> -->
+  <script type="module">
+    import Module from "./neopt-lib-cpp/neopt-lib.js";
+    const mymod = Module();
+    window.mymod = mymod;
+    mymod._mytest(1);
+    console.log(mymod);
+    //import {csbiginteger} from "https://unpkg.com/csbiginteger/dist/csbiginteger";
+
+/*
+    const instance = wasmModule({
+      onRuntimeInitialized() {
+        console.log("wasm LOADED!!!!!!");
+        //instance.sayHello();
+      }
+    });
+*/
+  </script>
+  <!-- 
   <script type="module">
     import wasmModule from "./neopt-lib-cpp/neopt-lib.js";
     //import {csbiginteger} from "https://unpkg.com/csbiginteger/dist/csbiginteger";
@@ -19,6 +38,7 @@
       }
     });
   </script>
+-->
 
 </head>
 
