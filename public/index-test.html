@@ -8,8 +8,36 @@
   <!-- <script src="./build/neopt-lib-cpp/neopt-lib.js"></script> -->
   <!-- <script src="src/neopt-sdk/index.js"></script> -->
   <script src="https://unpkg.com/csbiginteger/dist/csbiginteger"></script>
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/crypto-js/3.1.2/rollups/sha256.js"></script>
+  <!-- <script src="https://cdnjs.cloudflare.com/ajax/libs/crypto-js/3.1.2/rollups/sha256.js"></script> -->
   <script src="./neopt-lib-cpp/neopt-lib.js"></script> 
+
+
+<!--
+  <script src="https://unpkg.com/crypto-js@4.0.0/index.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/crypto-js/3.1.2/rollups/sha256.js"></script>
+
+  <script src="https://unpkg.com/csbiginteger/dist/csbiginteger"></script>
+  <script src="./neopt-lib-cpp/neopt-lib.js"></script> 
+-->
+
+<script src="./bower_components/crypto-js/crypto-js.js"></script>
+<!-- <script src="https://unpkg.com/crypto-js@4.0.0/sha256.js"></script> -->
+
+<!--
+<script type="module">
+  import CryptoJS from "https://unpkg.com/crypto-js@4.0.0/sha256.js";
+  console.log("tried to load module!");
+  console.log("lib:"+CryptoJS.SHA256);
+  //window.CryptoJS = CryptoJS;
+  /*
+  export function CryptoJS2(){
+    this.name = 'CryptoJS2';
+  }
+  */
+  //export { CryptoJS2 as default }
+</script>
+-->
+
   <!--
   <script type="module">
     import Module from "./neopt-lib-cpp/neopt-lib.js";
