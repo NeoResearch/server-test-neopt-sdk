@@ -1,0 +1,103 @@
+<html>
+
+<head>
+  <meta content="text/html;charset=utf-8" http-equiv="Content-Type">
+  <meta content="utf-8" http-equiv="encoding">
+  <title>Test neopt-sdk.js</title>
+
+<!-- <script src="./neopt-lib-cpp/neopt-lib.js"></script> -->
+<script src="./Neo3.js"></script>
+
+<script type="module">
+import csbiginteger from 'https://unpkg.com/csbiginteger/dist/csbiginteger-es6.mjs';
+window.csbiginteger = csbiginteger;
+</script>
+
+<!--
+<script type="module">
+  import CryptoJS from "https://unpkg.com/crypto-js@4.0.0/sha256.js";
+  console.log("tried to load module!");
+  console.log("lib:"+CryptoJS.SHA256);
+  //window.CryptoJS = CryptoJS;
+  /*
+  export function CryptoJS2(){
+    this.name = 'CryptoJS2';
+  }
+  */
+  //export { CryptoJS2 as default }
+</script>
+-->
+
+  <!--
+  <script type="module">
+    import Module from "./neopt-lib-cpp/neopt-lib.js";
+    //import {csBigInteger} from "./csBigInteger.js/csBigInteger.js";
+    import {csbiginteger} from "./csbiginteger.js";
+    console.log(csbiginteger);
+    //import {csbiginteger} from "https://unpkg.com/csbiginteger/dist/csbiginteger";
+    //
+    //Module['csBN'] = csbiginteger.csBigInteger;
+    //
+    console.log("waiting to initialize module");
+    Module().then(function(mymod) {
+      //const int_sqrt = mymod.cwrap('int_sqrt', 'number', ['number']);
+      console.log("prmise then!");
+      console.log(mymod._mytest);
+    });
+
+
+    //const mymod = Module();
+    //window.mymod = mymod;
+    //mymod._mytest(1);
+    //console.log(mymod);
+    //import {csbiginteger} from "https://unpkg.com/csbiginteger/dist/csbiginteger";
+
+/*
+    const instance = wasmModule({
+      onRuntimeInitialized() {
+        console.log("wasm LOADED!!!!!!");
+        //instance.sayHello();
+      }
+    });
+*/
+  </script>
+  -->
+
+
+  <!--
+  <script type="module">
+    import wasmModule from "./neopt-lib-cpp/neopt-lib.js";
+    //import {csbiginteger} from "https://unpkg.com/csbiginteger/dist/csbiginteger";
+
+    const instance = wasmModule({
+      onRuntimeInitialized() {
+        console.log("wasm LOADED!!!!!!");
+        //instance.sayHello();
+      }
+    });
+  </script>
+
+-->
+<script>
+  function testConversionToVerification(){
+  var vx = csbiginteger.csBigInteger("92417421609284060097852441734141491128266387380656748836951019715045385777354", 10)
+  var vy = csbiginteger.csBigInteger("81306213973968698003399946097148256829885864908442466985789085263601870844340", 10)
+  var ecpoint = {
+      "X" : vx.toHexString(),
+      "Y" : vy.toHexString(),
+      "curve" : "secp256r1"
+  };
+  var strJson = JSON.stringify(ecpoint);
+
+  var vout = Module.cpp_SmartContract_Contract_CreateSignatureRedeemScript(strJson);
+  console.log(vout);
+  }
+</script>
+
+</head>
+
+<body>
+
+</body>
+
+</html>
