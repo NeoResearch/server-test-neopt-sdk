@@ -6,7 +6,7 @@
   <title>Test neopt-sdk.js</title>
 
 <!-- <script src="./neopt-lib-cpp/neopt-lib.js"></script> -->
-<script src="./neopt.js"></script>
+<script src="./neopt-sdk.js"></script>
 
 <script type="module">
 import csbiginteger from 'https://unpkg.com/csbiginteger/dist/csbiginteger-es6.mjs';
@@ -89,7 +89,7 @@ window.csbiginteger = csbiginteger;
   };
   var strJson = JSON.stringify(ecpoint);
 
-  var vout = Module.cpp_SmartContract_Contract_CreateSignatureRedeemScript(strJson);
+  var vout = neopt.CppModule.cpp_SmartContract_Contract_CreateSignatureRedeemScript(strJson); //Module.cpp_SmartContract_Contract_CreateSignatureRedeemScript(strJson);
   console.log(vout);
   }
 </script>
