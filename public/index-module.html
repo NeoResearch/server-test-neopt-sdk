@@ -89,7 +89,8 @@ window.csbiginteger = csbiginteger;
   };
   var strJson = JSON.stringify(ecpoint);
 
-  var vout = neopt.CppModule.cpp_SmartContract_Contract_CreateSignatureRedeemScript(strJson); //Module.cpp_SmartContract_Contract_CreateSignatureRedeemScript(strJson);
+  //var vout = neopt.CppModule.cpp_SmartContract_Contract_CreateSignatureRedeemScript(strJson); //Module.cpp_SmartContract_Contract_CreateSignatureRedeemScript(strJson);
+  var vout = neopt.Neo3.Contract_CreateSignatureRedeemScript(strJson);
   console.log(vout);
   }
 </script>
