@@ -6,7 +6,13 @@
   <title>Test neopt-sdk.js</title>
 
 <!-- <script src="./neopt-lib-cpp/neopt-lib.js"></script> -->
-<script src="./neopt-sdk.js"></script>
+<!-- <script src="./neopt-sdk.js"></script> -->
+
+<script type="module">
+import neopt from './neopt-sdk-es6.mjs';
+window.neopt = neopt;
+</script>
+
 
 <script type="module">
 import csbiginteger from 'https://unpkg.com/csbiginteger/dist/csbiginteger-es6.mjs';
