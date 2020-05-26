@@ -46248,7 +46248,10 @@ var ASM_CONSTS = {
     }
 
   function _external_sha256(ptr1, sz1, ptr_out, sz_out) {
-      let CryptoJS = Module['CryptoJS'];
+      //let CryptoJS = Module['CryptoJS'];
+      console.log("need cryptojs...");
+      console.log(CryptoJS);
+      //let CryptoJS = Module['CryptoJS'];
       //
       var v1 = Module.HEAPU8.subarray(ptr1, ptr1 + sz1);
       //
