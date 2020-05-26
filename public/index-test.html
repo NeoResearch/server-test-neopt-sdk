@@ -90,8 +90,8 @@
 -->
 <script>
   function testConversionToVerification(){
-  var vx = csbiginteger.csBigInteger("43563478194357645732161043749214420341576583724275881899443933055754116882936", 10)
-  var vy = csbiginteger.csBigInteger("6800198406926458502571476951697947402787919362010374841430910815761615021861", 10)
+  var vx = csbiginteger.csBigInteger("92417421609284060097852441734141491128266387380656748836951019715045385777354", 10)
+  var vy = csbiginteger.csBigInteger("81306213973968698003399946097148256829885864908442466985789085263601870844340", 10)
   var ecpoint = {
       "X" : vx.toHexString(),
       "Y" : vy.toHexString(),
@@ -100,6 +100,7 @@
   var strJson = JSON.stringify(ecpoint);
   
   var vout = Module.cpp_SmartContract_Contract_CreateSignatureRedeemScript(strJson);
+  console.log(vout);
   }
 </script>
 
