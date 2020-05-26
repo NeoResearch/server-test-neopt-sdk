@@ -24,7 +24,22 @@ var Module = typeof Module !== 'undefined' ? Module : {};
 
 // --pre-jses are emitted after the Module integration code, so that they can
 // refer to Module (if they choose; they can also define Module)
-// {{PRE_JSES}}
+// prefix.js
+/*
+define(function() {
+  return function(Module) {
+*/
+
+
+
+// for global "polluted" browser version
+// we must load <script> ... </script> the csBigInteger.js and crypto-js BEFORE this
+// -------------
+console.log("prefix: will need csbiginteger now...");
+Module["csBN"] = csbiginteger.csBigInteger;
+console.log("prefix: will need CryptoJS now...");
+Module["CryptoJS"] = CryptoJS;
+
 
 // Sometimes an existing Module object exists with properties
 // meant to overwrite the default module functionality. Here
@@ -3056,7 +3071,9 @@ var ASM_CONSTS = {
     }
 
   function _csbiginteger_gt(ptr1, sz1, ptr2, sz2) {
-      let csBN = csbiginteger.csBigInteger;
+      //let csBN = csbiginteger.csBigInteger;
+      let csBN = Module['csBN']; //csbiginteger.csBigInteger; // this will not work on 'node'... must REMOVE this into some --pre-js....
+      
       // inputs are pre-allocated
       //console.log("csbiginteger_gt ptr1="+ptr1+ " sz1="+sz1+ " ptr2="+ptr2+ " sz2="+sz2);
       //
@@ -3084,7 +3101,11 @@ var ASM_CONSTS = {
       var vstr1 = Module.UTF8ToString(str_val);
       //let csBN = Module['csBN'];
       //console.log("WILL NEED TO USE csBN...");
-      let csBN = csbiginteger.csBigInteger;
+      //let csBN = null;
+      //if(Module['csBN'])
+      //  csBN = Module['csBN'];
+      //else 
+      let csBN = Module['csBN']; //csbiginteger.csBigInteger; // this will not work on 'node'... must REMOVE this into some --pre-js....
       //console.log(csBN);
       var big1 = new csBN(vstr1, int_base);
       //console.log("csbiginteger_init_s str='"+vstr1+"' base="+int_base+ " ptr_out="+ptr_out+ " sz_out"+sz_out);
@@ -3109,7 +3130,8 @@ var ASM_CONSTS = {
     }
 
   function _csbiginteger_lt(ptr1, sz1, ptr2, sz2) {
-      let csBN = csbiginteger.csBigInteger;
+      //let csBN = csbiginteger.csBigInteger;
+      let csBN = Module['csBN']; //csbiginteger.csBigInteger; // this will not work on 'node'... must REMOVE this into some --pre-js....
       // inputs are pre-allocated
       //console.log("csbiginteger_gt ptr1="+ptr1+ " sz1="+sz1+ " ptr2="+ptr2+ " sz2="+sz2);
       //
@@ -3135,7 +3157,7 @@ var ASM_CONSTS = {
   function _csbiginteger_mod(ptr1, sz1, ptr2, sz2, ptr_out, sz_out) {
       // inputs are pre-allocated
       //let csBN = Module['csBN'];
-      let csBN = csbiginteger.csBigInteger;
+      let csBN = Module['csBN'];//csbiginteger.csBigInteger;
       //
       var v1 = Module.HEAPU8.subarray(ptr1, ptr1 + sz1);
       var v2 = Module.HEAPU8.subarray(ptr2, ptr2 + sz2);
@@ -3297,9 +3319,9 @@ var ASM_CONSTS = {
     }
 
   function _external_sha256(ptr1, sz1, ptr_out, sz_out) {
-      //let CryptoJS = Module['CryptoJS'];
+      let myCryptoJS = Module['CryptoJS'];
       console.log("need cryptojs...");
-      console.log(CryptoJS);
+      console.log(myCryptoJS);
       //let CryptoJS = Module['CryptoJS'];
       //
       var v1 = Module.HEAPU8.subarray(ptr1, ptr1 + sz1);
@@ -3315,11 +3337,11 @@ var ASM_CONSTS = {
       //
       //console.log("SHA256 hexv1 = "+hexv1);
       //
-      var hexEnc1 = CryptoJS.enc.Hex.parse(hexv1);
+      var hexEnc1 = myCryptoJS.enc.Hex.parse(hexv1);
       //
       //console.log("SHA256 hexEnc1 = "+hexEnc1);
       //
-      var outEnc1 = CryptoJS.SHA256(hexEnc1);
+      var outEnc1 = myCryptoJS.SHA256(hexEnc1);
       //
       //console.log("SHA256 outEnc1 = "+outEnc1);
       //
@@ -3327,7 +3349,7 @@ var ASM_CONSTS = {
       //const fromHexString = hexString =>
       //  new Uint8Array(hexString.match(/.{1,2}/g).map(byte => parseInt(byte, 16)));
       //
-      var hex_out = CryptoJS.enc.Hex.stringify(outEnc1);
+      var hex_out = myCryptoJS.enc.Hex.stringify(outEnc1);
       //
       // ============ VANILLA JS =============
       const fromHexString = hexString =>
