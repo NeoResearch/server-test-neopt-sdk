@@ -25,6 +25,7 @@ Modularization via es6 is not working yet, so (for the moment) we require users 
   <script src="./bower_components/crypto-js/crypto-js.js"></script>
   <script src="./neopt-lib-cpp-web/neopt-lib-cpp-web.js"></script>
 ```
+Default naming from `emscripten` is `Module`.
 
 
 ```
