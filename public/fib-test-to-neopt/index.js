@@ -20,7 +20,7 @@ import ourtestWasm from './ourtest.wasm';
 // `.wasm` file, we have to provide a `locateFile()` hook to redirect
 // to the appropriate URL.
 // More details: https://kripken.github.io/emscripten-site/docs/api_reference/module.html
-const mymodule = ourtest({
+export const mymodule = ourtest({
   locateFile(path) {
     if(path.endsWith('.wasm')) {
       return ourtestWasm;
@@ -37,7 +37,7 @@ export const myoutro_denovo = mymodule._myoutro_denovo;
 
 export const cpp_myoutro_denovo2 = mymodule.cpp_myoutro_denovo2;
 
-export const c_API_CreateSignatureRedeemScript = mymodule._c_API_CreateSignatureRedeemScript;
+export const c_API_CreateSignatureRedeemScript = mymodule.cwrap('c_API_CreateSignatureRedeemScript', 'string', ['string']);
 
 export const cpp_SmartContract_Contract_CreateSignatureRedeemScript = mymodule.cpp_SmartContract_Contract_CreateSignatureRedeemScript;
 
