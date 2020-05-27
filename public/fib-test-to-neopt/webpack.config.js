@@ -20,7 +20,9 @@ module.exports = {
   entry: "./index.js",
   output: {
     path: path.resolve(__dirname, "dist"),
-    filename: "bundle.js"
+    filename: "bundle.js",
+    library: 'neoptFib',
+    libraryTarget: 'umd'
   },
   // This is necessary due to the fact that emscripten puts both Node and web
   // code into one file. The node part uses Node’s `fs` module to load the wasm
@@ -35,13 +37,13 @@ module.exports = {
       // load these files correctly (provided the global’s name is the same
       // as the file name).
       {
-        test: /fibonacci\.js$/,
+        test: /ourtest\.js$/,
         loader: "exports-loader"
       },
       // wasm files should not be processed but just be emitted and we want
       // to have their public URL.
       {
-        test: /fibonacci\.wasm$/,
+        test: /ourtest\.wasm$/,
         type: "javascript/auto",
         loader: "file-loader",
         options: {
