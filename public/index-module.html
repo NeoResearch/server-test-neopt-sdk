@@ -8,9 +8,20 @@
 <!-- <script src="./neopt-lib-cpp/neopt-lib.js"></script> -->
 <!-- <script src="./neopt-sdk.js"></script> -->
 
+<!--
 <script type="module">
 import neopt from './neopt-sdk-es6.mjs';
 window.neopt = neopt;
+</script>
+-->
+
+<!-- <script type="module" src="./neopt-lib-cpp-es6.js"></script> -->
+<
+<script type="module">
+import * as Module from './neopt-lib-cpp-es6.mjs';
+console.log(Module);
+console.log(neoptlib);
+window.neoptlib = neoptlib;
 </script>
 
 

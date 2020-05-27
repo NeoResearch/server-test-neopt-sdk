@@ -24,18 +24,19 @@ var Module = typeof Module !== 'undefined' ? Module : {};
 
 // --pre-jses are emitted after the Module integration code, so that they can
 // refer to Module (if they choose; they can also define Module)
-// Prefix-node.js for loading dependent libraries with backup
-// this works for Node (CommonJS) versions (that have "require()")
+// prefix-web.js
 /*
 define(function() {
-    return function(Module) {
-        */
+  return function(Module) {
+*/
 
-let lt_csbn = require('csbiginteger');
-let lt_cryptojs = require('crypto-js');
-
-Module["csBN"] = lt_csbn.csBigInteger;
-Module["CryptoJS"] = lt_cryptojs;
+// for global "polluted" browser version
+// we must load <script> ... </script> the csBigInteger.js and crypto-js BEFORE this
+// -------------
+console.log("prefix: will need csbiginteger now...");
+Module["csBN"] = csbiginteger.csBigInteger;
+console.log("prefix: will need CryptoJS now...");
+Module["CryptoJS"] = CryptoJS;
 
 
 // Sometimes an existing Module object exists with properties
@@ -4473,11 +4474,3 @@ run();
 
 
 
-// postfix.js
-
-/*
-  };
-});
-*/
-
-// "--post-js postfix.js"  is not necessary for the moment
